@@ -1,7 +1,8 @@
 pipeline {
     agent any
     environment {
-        AWS_CREDENTIALS_ID = 'aws-cred' // Replace with your actual credentials ID
+        AWS_ACCESS_KEY_ID = credentials('aws-cred')  
+        AWS_DEFAULT_REGION = 'us-east-2'
     }
     stages {
         stage('git-checkout') {
@@ -11,11 +12,7 @@ pipeline {
     }
         stage('Deploy to AWS') {
             steps {
-                script {
-                    withAWS(credentials: "${AWS_CREDENTIALS_ID}", region: 'us-east-2') {
                         sh 'aws s3 ls'
-                    }
-                }
             }
     }
 }
