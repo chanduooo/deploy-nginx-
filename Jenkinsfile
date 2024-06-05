@@ -19,7 +19,6 @@ pipeline {
             steps {
                         sh '''
                           aws eks update-kubeconfig --region us-east-2 --name dev-eks
-                          kubectl get ns
                           '''
             }
 }
