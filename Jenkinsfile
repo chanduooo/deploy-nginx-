@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     environment {
-        AWS_CREDENTIALS_ID = 'aws-cred' // This is the ID you gave when you added the credentials in Jenkins
+        AWS_CREDENTIALS_ID = 'aws-cred' 
     }
     stages {
         stage('Deploy to AWS') {
             steps {
-                withAWS(credentials: "${AWS_CREDENTIALS_ID}", region: 'us-west-2') {
+                withAWS(credentials: "${AWS_CREDENTIALS_ID}", region: 'us-east-2') {
                     sh '''
                     # Example AWS CLI command
                     aws s3 ls
