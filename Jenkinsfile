@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('eks-connection') {
+        stage('aws-connection') {
             steps {
                 withAWS(region: 'us-east-2', credentials: 'aws-cred')
             }
