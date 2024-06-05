@@ -6,7 +6,7 @@ pipeline {
     }
     stages {
         stage('git-checkout')
-        sterps{
+        steps {
             git branch: 'main', url: 'https://github.com/chanduooo/deploy-nginx-.git'
         }
     }
