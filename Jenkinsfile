@@ -12,7 +12,7 @@ pipeline {
     }
         stage('Deploy to AWS') {
             steps {
-                withAWS(credentials: "${AWS_CREDENTIALS_ID}", region: 'us-east-2') {
+                withAWS(credentials: "${AWS_CREDENTIALS_ID}") {
                     sh '''
                     # Example AWS CLI command
                     aws s3 ls
