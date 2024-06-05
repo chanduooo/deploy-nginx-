@@ -17,7 +17,7 @@ pipeline {
     }
         stage('connection eks') {
             steps {
-                        sh 'aws eks --region us-east-2 update-kubeconfig --name dev-eks'
+                        sh 'kubectl config use-context arn:aws:eks:us-east-2:191962495115:cluster/dev-eks'
             }
 }
         stage('nodes status') {
