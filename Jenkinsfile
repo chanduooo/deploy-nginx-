@@ -20,6 +20,11 @@ pipeline {
                         sh 'aws eks --region us-east-2 update-kubeconfig --name dev-eks'
             }
 }
+        stage('nodes status') {
+            steps {
+                        sh 'kubectl get nodes'
+            }
+}
         stage('deploy-nginx') {
             steps {
                         sh '''
