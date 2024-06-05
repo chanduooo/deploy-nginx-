@@ -1,12 +1,18 @@
 pipeline {
     agent any
+environment {
+        AWS_CREDENTIALS_ID = 'aws-cred' 
+    }
 
     stages {
-        stage('aws-connection') {
+        stage('Deploy to AWS') {
             steps {
-                withAWS(region: 'us-east-2', credentials: 'aws-cred')
+                withAWS(credentials: "${AWS_CREDENTIALS_ID}", region: 'us-east-2') {
+                    sh '''
+                    aws s3 ls
+                    '''
+                }
             }
-        }
         stage('eks-connection') {
             steps {
                 sh 'kubectl config use-context arn:aws:eks:us-east-2:191962495115:cluster/dev-eks'
