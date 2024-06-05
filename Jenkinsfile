@@ -5,6 +5,11 @@ pipeline {
         AWS_CREDENTIALS_ID = 'aws-cred' 
     }
     stages {
+        stage('git-checkout')
+        sterps{
+            git branch: 'main', url: 'https://github.com/chanduooo/deploy-nginx-.git'
+        }
+    }
         stage('Deploy to AWS') {
             steps {
                 withAWS(credentials: "${AWS_CREDENTIALS_ID}", region: 'us-east-2') {
