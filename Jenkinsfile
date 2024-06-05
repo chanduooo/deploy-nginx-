@@ -9,7 +9,7 @@ pipeline {
             git branch: 'main', url: 'https://github.com/chanduooo/deploy-nginx-.git'
         }
     }
-        ststage('Deploy to AWS') {
+        stage('Deploy to AWS') {
             steps {
                 script {
                     withAWS(credentials: "${AWS_CREDENTIALS_ID}", region: 'us-west-2') {
