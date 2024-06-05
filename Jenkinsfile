@@ -1,9 +1,5 @@
 pipeline {
     agent any
-
-    environment {
-        AWS_CREDENTIALS_ID = 'aws-cred' 
-    }
     stages {
         stage('git-checkout') {
         steps {
@@ -12,7 +8,7 @@ pipeline {
     }
         stage('Deploy to AWS') {
             steps {
-                withAWS(credentials: "${AWS_CREDENTIALS_ID}") {
+                withAWS(credentials: 'aws-cred') {
                     sh '''
                     # Example AWS CLI command
                     aws s3 ls
