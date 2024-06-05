@@ -1,22 +1,22 @@
 pipeline {
     agent any
+    environment {
+        AWS_CREDENTIALS_ID = 'aws-cred' // Replace with your actual credentials ID
+    }
     stages {
         stage('git-checkout') {
         steps {
             git branch: 'main', url: 'https://github.com/chanduooo/deploy-nginx-.git'
         }
     }
-        stage('Deploy to AWS') {
+        ststage('Deploy to AWS') {
             steps {
-                withAWS(credentials: 'aws-cred') {
-                    sh '''
-                    # Example AWS CLI command
-                    aws s3 ls
-                    '''
-                    
+                script {
+                    withAWS(credentials: "${AWS_CREDENTIALS_ID}", region: 'us-west-2') {
+                        sh 'aws s3 ls'
+                    }
                 }
             }
-        }
-        
     }
+}
 }
