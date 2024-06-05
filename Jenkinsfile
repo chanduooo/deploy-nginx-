@@ -1,6 +1,7 @@
 pipeline {
     agent any
-environment {
+
+    environment {
         AWS_CREDENTIALS_ID = 'aws-cred' 
     }
 
