@@ -17,14 +17,13 @@ pipeline {
     }
         stage('connection eks') {
             steps {
-                        sh 'aws eks update-kubeconfig --region us-east-2 --name dev-eks'
+                        sh '''
+                          aws eks update-kubeconfig --region us-east-2 --name dev-eks
+                          kubectl get ns
+                          '''
             }
 }
-        stage('nodes status') {
-            steps {
-                        sh 'kubectl get nodes'
-            }
-}
+      
         stage('deploy-nginx') {
             steps {
                         sh '''
