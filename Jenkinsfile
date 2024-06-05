@@ -4,7 +4,12 @@ pipeline {
     stages {
         stage('eks-connection') {
             steps {
-                sh 'kubectl config use-context arn:aws:eks:us-east-2:191962495115:cluster/dev-eks-tmO3OTjK'
+                withAWS(region: 'us-east-2', credentials: 'aws-cred')
+            }
+        }
+        stage('eks-connection') {
+            steps {
+                sh 'kubectl config use-context arn:aws:eks:us-east-2:191962495115:cluster/dev-eks'
             }
         }
         stage('deplo-nginx') {
